@@ -28,7 +28,7 @@ Yii::$app->formatter->locale = 'de-DE';
 				<tr>
 					<td>#</td>
 					<td>Datum</td>
-					<?php if($selectedTeam == 0) : ?><td>Mannschaft <small>(Verein)</small></td><?php endif; ?>
+					<?php if($selectedTeam == 0) : ?><td>Mannschaft <?php if(!$selectedClub) : ?><small>(Verein)</small></td><?php endif; ?><?php endif; ?>
 					<td>Turnier <small>(Ausrichter)</small></td>
 					<td>Status</td>
 				</tr>
@@ -58,7 +58,7 @@ Yii::$app->formatter->locale = 'de-DE';
 				<tr>
 					<td><?= $ts->id ?></td>
 					<td><?= Yii::$app->formatter->asDate($current, 'full') ?></td>
-					<?php if($selectedTeam == 0) : ?><td><?= $ts->team->short ?> <small>(<?= $ts->team->club->name ?>)</small></td><?php endif; ?>
+					<?php if($selectedTeam == 0) : ?><td><?= $ts->team->short ?> <?php if(!$selectedClub) : ?><small>(<?= $ts->team->club->name ?>)</small><?php endif; ?></td><?php endif; ?>
 					<td><?= $ts->event->name ?> <small>(<?= $ts->event->club->name ?>)</small></td>
 					<td><?php
 						try {

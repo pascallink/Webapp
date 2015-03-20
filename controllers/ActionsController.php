@@ -3,18 +3,17 @@
 namespace app\controllers;
 
 use Yii;
-use app\models\Subscriptions;
-use app\models\SubscriptionsSearch;
+use app\models\Actions;
+use app\models\ActionsSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * SubscriptionsController implements the CRUD actions for Subscriptions model.
+ * ActionsController implements the CRUD actions for Actions model.
  */
-class SubscriptionsController extends Controller
+class ActionsController extends Controller
 {
-	
     public function behaviors()
     {
         return [
@@ -28,12 +27,12 @@ class SubscriptionsController extends Controller
     }
 
     /**
-     * Lists all Subscriptions models.
+     * Lists all Actions models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new SubscriptionsSearch();
+        $searchModel = new ActionsSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -43,7 +42,7 @@ class SubscriptionsController extends Controller
     }
 
     /**
-     * Displays a single Subscriptions model.
+     * Displays a single Actions model.
      * @param integer $id
      * @return mixed
      */
@@ -55,13 +54,13 @@ class SubscriptionsController extends Controller
     }
 
     /**
-     * Creates a new Subscriptions model.
+     * Creates a new Actions model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Subscriptions();
+        $model = new Actions();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -73,7 +72,7 @@ class SubscriptionsController extends Controller
     }
 
     /**
-     * Updates an existing Subscriptions model.
+     * Updates an existing Actions model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -92,7 +91,7 @@ class SubscriptionsController extends Controller
     }
 
     /**
-     * Deletes an existing Subscriptions model.
+     * Deletes an existing Actions model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -105,20 +104,18 @@ class SubscriptionsController extends Controller
     }
 
     /**
-     * Finds the Subscriptions model based on its primary key value.
+     * Finds the Actions model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Subscriptions the loaded model
+     * @return Actions the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Subscriptions::findOne($id)) !== null) {
+        if (($model = Actions::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
-		
-		
 }

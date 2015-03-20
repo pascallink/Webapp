@@ -7,8 +7,10 @@ use yii\grid\GridView;
 /* @var $searchModel app\models\SubscriptionsSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Subscriptions';
+$this->title = 'Eintragungen';
 $this->params['breadcrumbs'][] = $this->title;
+
+Yii::$app->formatter->locale = 'de-DE';
 ?>
 <div class="subscriptions-index">
 
@@ -21,15 +23,59 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
+				'filterModel' => $searchModel,
+				'filterRowOptions' => ['class' => 'filterRow'],
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
+						[                     
+								'label' => 'ID',
+								'value' => 'id',
+								'enableSorting' => '1',
+								'options' =>  ['width' => '75'],
+								'filter' =>  Html::activeTextInput($searchModel, 'id', ['class' => 'form-control input-sm', 'placeholder' => 'ID']),
+								
+						],
+						[                     // 'date',
+								'label' => 'Datum',
+								'value' => 'date',
+								'format' =>  ['date', 'php:d. M Y - H:i:s'],
+						],
+						
+						
+						[                     
+								'label' => 'Team',
+								//'value' => 'team.short',
+								'value'=>function($searchModel,$row){
+									
+									return $searchModel->team->name.Html::beginTag('small').' ('.$searchModel->team->id.')'.Html::endTag('small');
+								},
+								'format' => 'html',
+								'filter' =>  Html::activeTextInput($searchModel, 'team_id', ['class' => 'form-control input-sm', 'placeholder' => 'Team ID']),
 
-            'id',
-            'team_id',
-            'event_id',
-            'date',
-            'state_id',
+						],
+						
+						[                     
+								'label' => 'Veranstaltung',
+								
+								'value'=>function($searchModel,$row){
+									
+									return $searchModel->event->name.Html::beginTag('small').' ('.$searchModel->event->id.')'.Html::endTag('small');
+								},
+								'format' => 'html',
+								'filter' =>  Html::activeTextInput($searchModel, 'event_id', ['class' => 'form-control input-sm', 'placeholder' => 'Event ID']),
+						],
+						
+						[                     
+								'label' => 'Status',
+								
+								'value'=>function($searchModel,$row){
+									
+									return $searchModel->state->name.Html::beginTag('small').' ('.$searchModel->state->id.')'.Html::endTag('small');
+								},
+								'format' => 'html',
+								'filter' =>  Html::activeTextInput($searchModel, 'state_id', ['class' => 'form-control input-sm', 'placeholder' => 'Status ID']),
+						],
+						
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

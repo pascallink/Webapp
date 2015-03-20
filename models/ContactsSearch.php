@@ -5,12 +5,12 @@ namespace app\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\Subscriptions;
+use app\models\Contacts;
 
 /**
- * SubscriptionsSearch represents the model behind the search form about `app\models\Subscriptions`.
+ * ContactsSearch represents the model behind the search form about `app\models\Contacts`.
  */
-class SubscriptionsSearch extends Subscriptions
+class ContactsSearch extends Contacts
 {
     /**
      * @inheritdoc
@@ -18,8 +18,8 @@ class SubscriptionsSearch extends Subscriptions
     public function rules()
     {
         return [
-            [['id', 'team_id', 'event_id', 'state_id'], 'integer'],
-            [['date'], 'safe'],
+            [['id'], 'integer'],
+            [['name', 'fullname', 'mail', 'session', 'pw', 'phone', 'authKey', 'accessToken'], 'safe'],
         ];
     }
 
@@ -41,7 +41,7 @@ class SubscriptionsSearch extends Subscriptions
      */
     public function search($params)
     {
-        $query = Subscriptions::find();
+        $query = Contacts::find();
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -57,14 +57,17 @@ class SubscriptionsSearch extends Subscriptions
 
         $query->andFilterWhere([
             'id' => $this->id,
-            'team_id' => $this->team_id,
-            'event_id' => $this->event_id,
-            'date' => $this->date,
-            'state_id' => $this->state_id,
-            
         ]);
 
+        $query->andFilterWhere(['like', 'name', $this->name])
+            ->andFilterWhere(['like', 'fullname', $this->fullname])
+            ->andFilterWhere(['like', 'mail', $this->mail])
+            ->andFilterWhere(['like', 'session', $this->session])
+            ->andFilterWhere(['like', 'pw', $this->pw])
+            ->andFilterWhere(['like', 'phone', $this->phone])
+            ->andFilterWhere(['like', 'authKey', $this->authKey])
+            ->andFilterWhere(['like', 'accessToken', $this->accessToken]);
+
         return $dataProvider;
-				
     }
 }

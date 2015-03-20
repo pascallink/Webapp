@@ -4,18 +4,16 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\Subscriptions */
+/* @var $model app\models\Actions */
 
-$name = $model->team->name;
-$this->title = $name;
-$this->params['breadcrumbs'][] = ['label' => 'Subscriptions', 'url' => ['index']];
+$this->title = $model->name;
+$this->params['breadcrumbs'][] = ['label' => 'Actions', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="subscriptions-view">
+<div class="actions-view">
 
+    <h1><?= Html::encode($this->title) ?></h1>
 
-    <h3><?= $model->id ?>: <?= $name ?> <small>(Jahrgang: <?= Html::encode($model->team->year) ?>)</small></h3>
-		
     <p>
         <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
         <?= Html::a('Delete', ['delete', 'id' => $model->id], [
@@ -30,16 +28,9 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-						[                     //'event_id',
-								'label' => 'Veranstaltung',
-								'value' => $model->event->name,
-						],
-            'date',
-						
-						[                     //'state_id',
-								'label' => 'Status',
-								'value' => $model->state->name,
-						],
+            'id',
+            'name',
+            'descritption:ntext',
         ],
     ]) ?>
 

@@ -48,8 +48,7 @@ class Subscriptions extends \yii\db\ActiveRecord
             'id' => 'ID',
             'team_id' => 'Team ID',
             'event_id' => 'Event ID',
-            'date' => 'Date',
-            'state_id' => 'State ID',
+            'date' => 'Datum',
         ];
     }
 
@@ -76,4 +75,5 @@ class Subscriptions extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Events::className(), ['id' => 'event_id']);
     }
+		
 }

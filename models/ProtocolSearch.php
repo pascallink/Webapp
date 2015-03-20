@@ -5,12 +5,12 @@ namespace app\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\Subscriptions;
+use app\models\Protocol;
 
 /**
- * SubscriptionsSearch represents the model behind the search form about `app\models\Subscriptions`.
+ * ProtocolSearch represents the model behind the search form about `app\models\Protocol`.
  */
-class SubscriptionsSearch extends Subscriptions
+class ProtocolSearch extends Protocol
 {
     /**
      * @inheritdoc
@@ -18,8 +18,8 @@ class SubscriptionsSearch extends Subscriptions
     public function rules()
     {
         return [
-            [['id', 'team_id', 'event_id', 'state_id'], 'integer'],
-            [['date'], 'safe'],
+            [['id', 'user_id', 'action', 'module'], 'integer'],
+            [['text', 'ts'], 'safe'],
         ];
     }
 
@@ -41,7 +41,7 @@ class SubscriptionsSearch extends Subscriptions
      */
     public function search($params)
     {
-        $query = Subscriptions::find();
+        $query = Protocol::find();
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -57,14 +57,14 @@ class SubscriptionsSearch extends Subscriptions
 
         $query->andFilterWhere([
             'id' => $this->id,
-            'team_id' => $this->team_id,
-            'event_id' => $this->event_id,
-            'date' => $this->date,
-            'state_id' => $this->state_id,
-            
+            'user_id' => $this->user_id,
+            'action' => $this->action,
+            'module' => $this->module,
+            'ts' => $this->ts,
         ]);
 
+        $query->andFilterWhere(['like', 'text', $this->text]);
+
         return $dataProvider;
-				
     }
 }

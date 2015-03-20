@@ -3,14 +3,14 @@
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\Adresses */
+/* @var $model app\models\Protocol */
 
-$this->title = 'Update Adresses: ' . ' ' . $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Adresses', 'url' => ['index']];
+$this->title = 'Update Protocol: ' . ' ' . $model->id;
+$this->params['breadcrumbs'][] = ['label' => 'Protocols', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = 'Update';
 ?>
-<div class="adresses-update">
+<div class="protocol-update">
 
     <h1><?= Html::encode($this->title) ?></h1>
 

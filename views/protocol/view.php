@@ -4,13 +4,13 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\Adresses */
+/* @var $model app\models\Protocol */
 
 $this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Adresses', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Protocols', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="adresses-view">
+<div class="protocol-view">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
@@ -29,13 +29,11 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             'id',
-            'street',
-            'plz',
-            'nr',
-            'city',
-            'country',
-            'object',
+            'user_id',
+            'action',
+            'module',
             'text:ntext',
+            'ts',
         ],
     ]) ?>
 

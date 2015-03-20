@@ -4,11 +4,11 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\AdressesSearch */
+/* @var $model app\models\ActionsSearch */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="adresses-search">
+<div class="actions-search">
 
     <?php $form = ActiveForm::begin([
         'action' => ['index'],
@@ -17,19 +17,9 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'id') ?>
 
-    <?= $form->field($model, 'street') ?>
+    <?= $form->field($model, 'name') ?>
 
-    <?= $form->field($model, 'plz') ?>
-
-    <?= $form->field($model, 'nr') ?>
-
-    <?= $form->field($model, 'city') ?>
-
-    <?php // echo $form->field($model, 'country') ?>
-
-    <?php // echo $form->field($model, 'object') ?>
-
-    <?php // echo $form->field($model, 'text') ?>
+    <?= $form->field($model, 'descritption') ?>
 
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>
